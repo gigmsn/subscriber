@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  # run tests
+  test:
+    container_name: gigmsn_subscriber_test
+    image: alesr/gigmsn-subscriber_test
+    build:
+      context: .
+      dockerfile: resources/test/Dockerfile
+
+  # run consumer
+  consumer:
+    container_name: gigmsn_consumer
+    image: alesr/gigmsn-consumer
+    external_links:
+      - broker
+    build:
+      context: .
+      dockerfile: resources/prod/Dockerfile
+
+networks:
+  default:
+    external:
+      name: publisher_gigmsnnet
