@@ -6,6 +6,8 @@ services:
   test:
     container_name: gigmsn_subscriber_test
     image: alesr/gigmsn-subscriber_test
+    networks:
+      - default
     build:
       context: .
       dockerfile: resources/test/Dockerfile
